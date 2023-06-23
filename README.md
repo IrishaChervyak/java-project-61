@@ -3,3 +3,6 @@
 
 ### CodeClimate Linter
 [![Maintainability](https://api.codeclimate.com/v1/badges/fc0a41779ef39bda28be/maintainability)](https://codeclimate.com/github/IrishaChervyak/java-project-61/maintainability)
+
+### Проект Игры разума. Шаг 5. Запись asciinema игры Even
+https://asciinema.org/a/Fvb4Gyu5OUX1Md4GpGwbH4xj5
