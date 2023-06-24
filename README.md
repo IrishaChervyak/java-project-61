@@ -6,3 +6,6 @@
 
 ### Проект Игры разума. Шаг 5. Запись asciinema игры Even
 https://asciinema.org/a/Fvb4Gyu5OUX1Md4GpGwbH4xj5
+
+### Проект Игры разума. Шаг 6. Запись asciinema игры Calc
+[![asciicast](https://asciinema.org/a/Ct2vGazgpY8fujsyGqQg1WCu4.svg)](https://asciinema.org/a/Ct2vGazgpY8fujsyGqQg1WCu4)
