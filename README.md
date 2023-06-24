@@ -9,3 +9,8 @@
 
 ### Проект Игры разума. Шаг 6. Запись asciinema игры Calc
 [![asciicast](https://asciinema.org/a/Ct2vGazgpY8fujsyGqQg1WCu4.svg)](https://asciinema.org/a/Ct2vGazgpY8fujsyGqQg1WCu4)
+
+### Проект Игры разума. Шаг 7. Запись asciinema игры GCD
+[![asciicast](https://asciinema.org/a/7VR2t3GQUxe2ldv36L1tKvLSs.svg)](https://asciinema.org/a/7VR2t3GQUxe2ldv36L1tKvLSs)
+
+[![asciicast](https://asciinema.org/a/vKaIRICrTCc4zN4796Tegv2ow.svg)](https://asciinema.org/a/vKaIRICrTCc4zN4796Tegv2ow)
