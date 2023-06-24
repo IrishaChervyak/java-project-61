@@ -5,13 +5,9 @@ import hexlet.code.GameGenerator;
 import java.util.Random;
 
 public final class Even implements GameGenerator {
-    private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'";
+    private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     private final Random random = new Random();
     private int number = random.nextInt(100);
-
-    public int generateGame(int randomNumber) {
-        return randomNumber;
-    }
 
     @Override
     public String getGameDescription() {
