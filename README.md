@@ -14,3 +14,6 @@
 [![asciicast](https://asciinema.org/a/7VR2t3GQUxe2ldv36L1tKvLSs.svg)](https://asciinema.org/a/7VR2t3GQUxe2ldv36L1tKvLSs)
 
 [![asciicast](https://asciinema.org/a/vKaIRICrTCc4zN4796Tegv2ow.svg)](https://asciinema.org/a/vKaIRICrTCc4zN4796Tegv2ow)
+
+### Проект Игры разума. Шаг 8. Запись asciinema игры Progression
+[![asciicast](https://asciinema.org/a/XieqHr2D86Y9bnE7QrGKruInv.svg)](https://asciinema.org/a/XieqHr2D86Y9bnE7QrGKruInv)
