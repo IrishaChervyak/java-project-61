@@ -5,7 +5,7 @@ import hexlet.code.games.Even;
 
 import java.util.Scanner;
 
-public class Engine {
+public final class Engine {
     private Engine() {
         // Приватный конструктор
     }
