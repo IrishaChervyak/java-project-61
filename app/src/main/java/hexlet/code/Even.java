@@ -1,39 +1,38 @@
 package hexlet.code;
 
-import java.util.Scanner;
+import java.util.Random;
 
-public final class Even {
-    private Even() {
-        // Приватный конструктор
+public final class Even implements GameGenerator {
+    private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'";
+    private final Random random = new Random();
+    private int number = random.nextInt(100);
+
+    public int generateGame(int randomNumber) {
+        return randomNumber;
     }
 
-    public static void game(Scanner scanner) {
-        final int targetScore = 3;
+    @Override
+    public String getGameDescription() {
+        return GAME_DESCRIPTION;
+    }
 
-        Cli.welcomeUser(scanner);
-        System.out.println("Answer 'yes' if the number is even, otherwise answer 'no'");
+    @Override
+    public String getQuestion() {
+        return Integer.toString(number);
+    }
 
-        int scoredPoints = 0;
-        while (scoredPoints < targetScore) {
-            int randomNumber = (int) (Math.random() * 100) + 1;
-            System.out.printf("Question: %d\n", randomNumber);
+    @Override
+    public int checkAnswer(String answer) {
+        boolean isEven = number % 2 == 0;
 
-            int remainderOfDivision = randomNumber % 2;
-            System.out.print("Your answer: ");
-            String userAnswer = scanner.nextLine();
-            if ((remainderOfDivision == 0 && userAnswer.equals("yes"))
-                    || (remainderOfDivision != 0 && userAnswer.equals("no"))) {
-                System.out.println("Correct!");
-                scoredPoints++;
-            } else {
-                System.out.println("'yes' is wrong answer ;(. Correct answer was 'no'");
-                System.out.printf("Let's try again, %s!\n", Cli.userName);
-                break;
-            }
-        }
-
-        if (scoredPoints == targetScore) {
-            System.out.printf("Congratulations, %s!\n", Cli.userName);
+        String correctAnswer = isEven ? "yes" : "no";
+        if ((isEven && answer.equals("yes")) || (!isEven && answer.equals("no"))) {
+            number = random.nextInt(100);
+            return 1;
+        } else {
+            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
+            System.out.println(errorMessage);
+            return 0;
         }
     }
 }
