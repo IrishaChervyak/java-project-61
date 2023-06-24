@@ -1,10 +1,5 @@
 package hexlet.code;
 
-import hexlet.code.games.Calc;
-import hexlet.code.games.Even;
-import hexlet.code.games.GreatestCommonDivisor;
-import hexlet.code.games.Progression;
-
 import java.util.Scanner;
 
 public final class Engine {
@@ -14,55 +9,7 @@ public final class Engine {
 
     private static final int TARGET_SCORE = 3;
 
-    public static void runGames(Scanner scanner) {
-        displayGameMenu();
-        String selectedGameNumber = scanner.nextLine();
-
-        System.out.println();
-        switch (selectedGameNumber) {
-            case "0" -> System.out.println("Good Bye!");
-            case "1" -> Cli.welcomeUser(scanner);
-            case "2", "3", "4", "5" -> {
-                Cli.welcomeUser(scanner);
-                GameGenerator game = createGame(selectedGameNumber);
-                assert game != null;
-                gameOutput(scanner, game);
-            }
-            default -> System.out.println("Invalid choice. Please try again.");
-        }
-    }
-
-    private static void displayGameMenu() {
-        final String[] games = {"1 - Greet", "2 - Even", "3 - Calc", "4 - GCD", "5 - Progression", "0 - Exit"};
-        System.out.println("Please enter the game number and press Enter.");
-        for (String game : games) {
-            System.out.println(game);
-        }
-        System.out.print("Your choice: ");
-    }
-
-    private static GameGenerator createGame(String choice) {
-        switch (choice) {
-            case "2" -> {
-                return new Even();
-            }
-            case "3" -> {
-                return new Calc();
-            }
-            case "4" -> {
-                return new GreatestCommonDivisor();
-            }
-            case "5" -> {
-                return new Progression();
-            }
-            default -> {
-                System.out.println("Invalid choice. Please try again.");
-                return null;
-            }
-        }
-    }
-
-    private static void gameOutput(Scanner scanner, GameGenerator game) {
+    public static void gameOutput(Scanner scanner, GameGenerator game) {
         System.out.println(game.getGameDescription());
 
         int scoredPoints = 0;
