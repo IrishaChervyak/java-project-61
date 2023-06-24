@@ -3,6 +3,7 @@ package hexlet.code;
 import hexlet.code.games.Calc;
 import hexlet.code.games.Even;
 import hexlet.code.games.GreatestCommonDivisor;
+import hexlet.code.games.Progression;
 
 import java.util.Scanner;
 
@@ -21,7 +22,7 @@ public final class Engine {
         switch (selectedGameNumber) {
             case "0" -> System.out.println("Good Bye!");
             case "1" -> Cli.welcomeUser(scanner);
-            case "2", "3", "4" -> {
+            case "2", "3", "4", "5" -> {
                 Cli.welcomeUser(scanner);
                 GameGenerator game = createGame(selectedGameNumber);
                 assert game != null;
@@ -32,7 +33,7 @@ public final class Engine {
     }
 
     private static void displayGameMenu() {
-        final String[] games = {"1 - Greet", "2 - Even", "3 - Calc", "4 - GCD", "0 - Exit"};
+        final String[] games = {"1 - Greet", "2 - Even", "3 - Calc", "4 - GCD", "5 - Progression", "0 - Exit"};
         System.out.println("Please enter the game number and press Enter.");
         for (String game : games) {
             System.out.println(game);
@@ -50,6 +51,9 @@ public final class Engine {
             }
             case "4" -> {
                 return new GreatestCommonDivisor();
+            }
+            case "5" -> {
+                return new Progression();
             }
             default -> {
                 System.out.println("Invalid choice. Please try again.");
