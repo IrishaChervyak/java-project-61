@@ -9,7 +9,7 @@ public final class Even implements GameGenerator {
     private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
     private final Random random = new Random();
     private static final int MAX_RANDOM = 100;
-    private int number = random.nextInt(MAX_RANDOM);
+    private int number = nextNumber();
 
     @Override
     public String getGameDescription() {
@@ -25,11 +25,14 @@ public final class Even implements GameGenerator {
     public int checkAnswer(String answer) {
         boolean isEven = isEvenNumber();
         String correctAnswer = isEven ? "yes" : "no";
-        int result = GameLogic.processAnswer(isEven, answer, correctAnswer);
-        if (result == 1) {
-            number = random.nextInt(MAX_RANDOM);
+        if (GameLogic.processAnswer(isEven, answer, correctAnswer)) {
+            number = nextNumber();
         }
-        return result;
+        return 1;
+    }
+
+    private int nextNumber() {
+        return random.nextInt(MAX_RANDOM);
     }
 
     private boolean isEvenNumber() {

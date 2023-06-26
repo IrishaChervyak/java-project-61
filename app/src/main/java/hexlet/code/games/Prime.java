@@ -9,7 +9,7 @@ public final class Prime implements GameGenerator {
     private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private final Random random = new Random();
     private static final int MAX_RANDOM = 100;
-    private int number = random.nextInt(MAX_RANDOM);
+    private int number = nextNumber();
     @Override
     public String getGameDescription() {
         return GAME_DESCRIPTION;
@@ -24,11 +24,14 @@ public final class Prime implements GameGenerator {
     public int checkAnswer(String answer) {
         boolean isPrime = isPrimeNumber();
         String correctAnswer = isPrime ? "yes" : "no";
-        int result = GameLogic.processAnswer(isPrime, answer, correctAnswer);
-        if (result == 1) {
-            number = random.nextInt(MAX_RANDOM);
+        if (GameLogic.processAnswer(isPrime, answer, correctAnswer)) {
+            number = nextNumber();
         }
-        return result;
+        return 1;
+    }
+
+    private int nextNumber() {
+        return random.nextInt(MAX_RANDOM);
     }
 
     private boolean isPrimeNumber() {
