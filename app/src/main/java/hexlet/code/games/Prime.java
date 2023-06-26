@@ -23,11 +23,11 @@ public final class Prime implements GameGenerator {
     @Override
     public int checkAnswer(String answer) {
         boolean isPrime = isPrimeNumber();
-        String correctAnswer = isPrime ? "yes" : "no";
-        if (GameLogic.processAnswer(isPrime, answer, correctAnswer)) {
+        if (GameLogic.processAnswer(isPrime, answer, isPrime)) {
             number = nextNumber();
+            return 1;
         }
-        return 1;
+        return 0;
     }
 
     private int nextNumber() {

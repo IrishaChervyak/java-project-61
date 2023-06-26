@@ -24,11 +24,11 @@ public final class Even implements GameGenerator {
     @Override
     public int checkAnswer(String answer) {
         boolean isEven = isEvenNumber();
-        String correctAnswer = isEven ? "yes" : "no";
-        if (GameLogic.processAnswer(isEven, answer, correctAnswer)) {
+        if (GameLogic.processAnswer(isEven, answer, isEven)) {
             number = nextNumber();
+            return 1;
         }
-        return 1;
+        return 0;
     }
 
     private int nextNumber() {
