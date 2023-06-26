@@ -22,10 +22,17 @@ public final class Even implements GameGenerator {
 
     @Override
     public int checkAnswer(String answer) {
-        boolean isEven = number % 2 == 0;
-
+        boolean isEven = isEvenNumber();
         String correctAnswer = isEven ? "yes" : "no";
-        if ((isEven && answer.equals("yes")) || (!isEven && answer.equals("no"))) {
+        return processAnswer(isEven, answer, correctAnswer);
+    }
+
+    private boolean isEvenNumber() {
+        return number % 2 == 0;
+    }
+
+    private int processAnswer(boolean condition, String answer, String correctAnswer) {
+        if ((condition && answer.equals("yes")) || (!condition && answer.equals("no"))) {
             number = random.nextInt(MAX_RANDOM);
             return 1;
         } else {

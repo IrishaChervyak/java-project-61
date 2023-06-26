@@ -22,16 +22,8 @@ public final class Prime implements GameGenerator {
     @Override
     public int checkAnswer(String answer) {
         boolean isPrime = isPrimeNumber();
-
         String correctAnswer = isPrime ? "yes" : "no";
-        if ((isPrime && answer.equals("yes")) || (!isPrime && answer.equals("no"))) {
-            number = random.nextInt(MAX_RANDOM);
-            return 1;
-        } else {
-            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
-            System.out.println(errorMessage);
-            return 0;
-        }
+        return processAnswer(isPrime, answer, correctAnswer);
     }
 
     private boolean isPrimeNumber() {
@@ -46,5 +38,16 @@ public final class Prime implements GameGenerator {
         }
 
         return true;
+    }
+
+    private int processAnswer(boolean condition, String answer, String correctAnswer) {
+        if ((condition && answer.equals("yes")) || (!condition && answer.equals("no"))) {
+            number = random.nextInt(MAX_RANDOM);
+            return 1;
+        } else {
+            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
+            System.out.println(errorMessage);
+            return 0;
+        }
     }
 }
