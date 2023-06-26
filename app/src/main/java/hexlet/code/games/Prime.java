@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.GameGenerator;
+import hexlet.code.GameLogic;
 
 import java.util.Random;
 
@@ -23,7 +24,11 @@ public final class Prime implements GameGenerator {
     public int checkAnswer(String answer) {
         boolean isPrime = isPrimeNumber();
         String correctAnswer = isPrime ? "yes" : "no";
-        return processAnswer(isPrime, answer, correctAnswer);
+        int result = GameLogic.processAnswer(isPrime, answer, correctAnswer);
+        if (result == 1) {
+            number = random.nextInt(MAX_RANDOM);
+        }
+        return result;
     }
 
     private boolean isPrimeNumber() {
@@ -38,16 +43,5 @@ public final class Prime implements GameGenerator {
         }
 
         return true;
-    }
-
-    private int processAnswer(boolean condition, String answer, String correctAnswer) {
-        if ((condition && answer.equals("yes")) || (!condition && answer.equals("no"))) {
-            number = random.nextInt(MAX_RANDOM);
-            return 1;
-        } else {
-            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
-            System.out.println(errorMessage);
-            return 0;
-        }
     }
 }

@@ -1,6 +1,7 @@
 package hexlet.code.games;
 
 import hexlet.code.GameGenerator;
+import hexlet.code.GameLogic;
 
 import java.util.Random;
 
@@ -24,21 +25,14 @@ public final class Even implements GameGenerator {
     public int checkAnswer(String answer) {
         boolean isEven = isEvenNumber();
         String correctAnswer = isEven ? "yes" : "no";
-        return processAnswer(isEven, answer, correctAnswer);
+        int result = GameLogic.processAnswer(isEven, answer, correctAnswer);
+        if (result == 1) {
+            number = random.nextInt(MAX_RANDOM);
+        }
+        return result;
     }
 
     private boolean isEvenNumber() {
         return number % 2 == 0;
-    }
-
-    private int processAnswer(boolean condition, String answer, String correctAnswer) {
-        if ((condition && answer.equals("yes")) || (!condition && answer.equals("no"))) {
-            number = random.nextInt(MAX_RANDOM);
-            return 1;
-        } else {
-            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
-            System.out.println(errorMessage);
-            return 0;
-        }
     }
 }
