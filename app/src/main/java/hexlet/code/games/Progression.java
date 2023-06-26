@@ -34,10 +34,10 @@ public final class Progression implements GameGenerator {
     public int checkAnswer(String answer) {
         boolean isCorrect = answer.equals(Integer.toString(hiddenElementValue));
         if (isCorrect) {
-            progressionLength = random.nextInt(7, 11);
-            firstElementValue = random.nextInt(21);
-            progressionStep = random.nextInt(2, 7);
-            hiddenElementIndex = random.nextInt(1, progressionLength - 2);
+            progressionLength = random.nextInt(MIN_RANDOM_LENGTH, MAX_RANDOM_LENGTH);
+            firstElementValue = random.nextInt(MAX_ELEMENT_VALUE_RANDOM);
+            progressionStep = random.nextInt(MIN_RANDOM_STEP, MAX_RANDOM_STEP);
+            hiddenElementIndex = random.nextInt(MIN_RANDOM_HIDDEN_ELEMENT_INDEX, progressionLength - 2);
             return 1;
         } else {
             String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, hiddenElementValue);

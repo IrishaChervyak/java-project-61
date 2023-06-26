@@ -34,8 +34,8 @@ public final class GreatestCommonDivisor implements GameGenerator {
         int result = gcd(firstRandomNumber, secondRandomNumber);
         boolean isCorrect = result == answerNumber;
         if (isCorrect) {
-            firstRandomNumber = random.nextInt(101);
-            secondRandomNumber = random.nextInt(101);
+            firstRandomNumber = random.nextInt(MAX_FIRST_RANDOM);
+            secondRandomNumber = random.nextInt(MAX_SECOND_RANDOM);
             return 1;
         } else {
             String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, result);

@@ -50,9 +50,9 @@ public final class Calc implements GameGenerator {
 
         boolean isCorrect = result == answerNumber;
         if (isCorrect) {
-            firstRandomTerm = random.nextInt(20);
-            secondRandomTerm = random.nextInt(10);
-            randomOperation = random.nextInt(3);
+            firstRandomTerm = random.nextInt(MAX_FIRST_RANDOM_TERM);
+            secondRandomTerm = random.nextInt(MAX_SECOND_RANDOM_TERM);
+            randomOperation = random.nextInt(MAX_RANDOM_OPERATION);
             return 1;
         } else {
             String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, result);

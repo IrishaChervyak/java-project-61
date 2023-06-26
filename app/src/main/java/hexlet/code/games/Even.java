@@ -26,7 +26,7 @@ public final class Even implements GameGenerator {
 
         String correctAnswer = isEven ? "yes" : "no";
         if ((isEven && answer.equals("yes")) || (!isEven && answer.equals("no"))) {
-            number = random.nextInt(100);
+            number = random.nextInt(MAX_RANDOM);
             return 1;
         } else {
             String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);

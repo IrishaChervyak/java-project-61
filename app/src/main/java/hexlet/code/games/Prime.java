@@ -25,7 +25,7 @@ public final class Prime implements GameGenerator {
 
         String correctAnswer = isPrime ? "yes" : "no";
         if ((isPrime && answer.equals("yes")) || (!isPrime && answer.equals("no"))) {
-            number = random.nextInt(100);
+            number = random.nextInt(MAX_RANDOM);
             return 1;
         } else {
             String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, correctAnswer);
