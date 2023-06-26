@@ -4,13 +4,16 @@ import hexlet.code.GameGenerator;
 
 import java.util.Random;
 
-public class Calc implements GameGenerator {
+public final class Calc implements GameGenerator {
     private static final String GAME_DESCRIPTION = "What is the result of the expression?";
     private final Random random = new Random();
-    private int firstRandomTerm = random.nextInt(20);
-    private int secondRandomTerm = random.nextInt(10);
+    private static final int MAX_FIRST_RANDOM_TERM = 20;
+    private int firstRandomTerm = random.nextInt(MAX_FIRST_RANDOM_TERM);
+    private static final int MAX_SECOND_RANDOM_TERM = 10;
+    private int secondRandomTerm = random.nextInt(MAX_SECOND_RANDOM_TERM);
     private final String[] operations = {"+", "-", "*"};
-    private int randomOperation = random.nextInt(3);
+    private static final int MAX_RANDOM_OPERATION = 3;
+    private int randomOperation = random.nextInt(MAX_RANDOM_OPERATION);
 
     @Override
     public String getGameDescription() {

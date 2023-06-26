@@ -23,13 +23,13 @@ public final class Engine {
                 System.out.println("Correct!");
                 scoredPoints += gameResult;
             } else {
-                System.out.printf("Let's try again, %s!\n", Cli.userName);
+                System.out.printf("Let's try again, %s!\n", Cli.getUserName());
                 break;
             }
         }
 
         if (scoredPoints == TARGET_SCORE) {
-            System.out.printf("Congratulations, %s!\n", Cli.userName);
+            System.out.printf("Congratulations, %s!\n", Cli.getUserName());
         }
     }
 }

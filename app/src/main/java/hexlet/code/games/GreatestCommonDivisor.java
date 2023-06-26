@@ -4,11 +4,14 @@ import hexlet.code.GameGenerator;
 
 import java.util.Random;
 
-public class GreatestCommonDivisor implements GameGenerator {
+public final class GreatestCommonDivisor implements GameGenerator {
     private static final String GAME_DESCRIPTION = "Find the greatest common divisor of given numbers.";
     private final Random random = new Random();
-    private int firstRandomNumber = random.nextInt(101);
-    private int secondRandomNumber = random.nextInt(101);
+    private static final int MAX_FIRST_RANDOM = 101;
+    private int firstRandomNumber = random.nextInt(MAX_FIRST_RANDOM);
+    private static final int MAX_SECOND_RANDOM = 101;
+    private int secondRandomNumber = random.nextInt(MAX_SECOND_RANDOM);
+
     @Override
     public String getGameDescription() {
         return GAME_DESCRIPTION;

@@ -4,10 +4,11 @@ import hexlet.code.GameGenerator;
 
 import java.util.Random;
 
-public class Prime implements GameGenerator {
+public final class Prime implements GameGenerator {
     private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private final Random random = new Random();
-    private int number = random.nextInt(100);
+    private static final int MAX_RANDOM = 100;
+    private int number = random.nextInt(MAX_RANDOM);
     @Override
     public String getGameDescription() {
         return GAME_DESCRIPTION;
