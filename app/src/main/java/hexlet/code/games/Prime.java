@@ -1,39 +1,41 @@
 package hexlet.code.games;
 
-import hexlet.code.GameGenerator;
-import hexlet.code.TextUtil;
-
 import java.util.Random;
 
-public final class Prime implements GameGenerator {
-    private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-    private final Random random = new Random();
+public final class Prime {
+    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM = 100;
-    private int number = random.nextInt(MAX_RANDOM);
+    private static int number = RANDOM.nextInt(MAX_RANDOM);
+    private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
+    private static final String[] QUESTIONS = new String[3];
+    private static final String[] ANSWERS = new String[3];
 
-    @Override
-    public String getGameDescription() {
-        return GAME_DESCRIPTION;
+    public static void runGame() {
+        System.out.println(GAME_DESCRIPTION);
+        generateQuestionsAndAnswersForGame();
     }
 
-    @Override
-    public String getQuestion() {
-        return Integer.toString(number);
+    public static String[] getQuestions() {
+        return QUESTIONS;
     }
 
-    @Override
-    public int checkAnswer(String answer) {
-        boolean isPrime = isPrimeNumber();
-        if (isPrime == TextUtil.textToBoolean(answer)) {
-            number = random.nextInt(MAX_RANDOM);
-            return 1;
+    public static String[] getAnswers() {
+        return ANSWERS;
+    }
+
+    private static void generateQuestionsAndAnswersForGame() {
+        for (int i = 0; i < 3; i++) {
+            QUESTIONS[i] = String.format("%d", number);
+            if (isPrimeNumber()) {
+                ANSWERS[i] = "yes";
+            } else {
+                ANSWERS[i] = "no";
+            }
+            number = RANDOM.nextInt(MAX_RANDOM);
         }
-        String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, TextUtil.booleanToText(isPrime));
-        System.out.println(errorMessage);
-        return 0;
     }
 
-    private boolean isPrimeNumber() {
+    private static boolean isPrimeNumber() {
         if (number <= 1) {
             return false;
         }

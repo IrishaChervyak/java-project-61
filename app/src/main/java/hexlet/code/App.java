@@ -1,11 +1,12 @@
 package hexlet.code;
 
-import java.util.Scanner;
 import hexlet.code.games.Even;
 import hexlet.code.games.Calc;
 import hexlet.code.games.GreatestCommonDivisor;
 import hexlet.code.games.Progression;
 import hexlet.code.games.Prime;
+
+import java.util.Scanner;
 
 public class App {
     public static void main(String[] args) {
@@ -22,11 +23,30 @@ public class App {
         switch (selectedGameNumber) {
             case "0" -> System.out.println("Good Bye!");
             case "1" -> Cli.welcomeUser(scanner);
-            case "2", "3", "4", "5", "6" -> {
+            case "2" -> {
                 Cli.welcomeUser(scanner);
-                GameGenerator game = createGame(selectedGameNumber);
-                assert game != null;
-                Engine.gameOutput(scanner, game);
+                Even.runGame();
+                Engine.gameOutput(scanner, selectedGameNumber);
+            }
+            case "3" -> {
+                Cli.welcomeUser(scanner);
+                Calc.runGame();
+                Engine.gameOutput(scanner, selectedGameNumber);
+            }
+            case "4" -> {
+                Cli.welcomeUser(scanner);
+                GreatestCommonDivisor.runGame();
+                Engine.gameOutput(scanner, selectedGameNumber);
+            }
+            case "5" -> {
+                Cli.welcomeUser(scanner);
+                Progression.runGame();
+                Engine.gameOutput(scanner, selectedGameNumber);
+            }
+            case "6" -> {
+                Cli.welcomeUser(scanner);
+                Prime.runGame();
+                Engine.gameOutput(scanner, selectedGameNumber);
             }
             default -> System.out.println("Invalid choice. Please try again.");
         }
@@ -42,34 +62,12 @@ public class App {
             "6 - Prime",
             "0 - Exit"
         };
+
         System.out.println("Please enter the game number and press Enter.");
         for (String game : games) {
             System.out.println(game);
         }
-        System.out.print("Your choice: ");
-    }
 
-    private static GameGenerator createGame(String choice) {
-        switch (choice) {
-            case "2" -> {
-                return new Even();
-            }
-            case "3" -> {
-                return new Calc();
-            }
-            case "4" -> {
-                return new GreatestCommonDivisor();
-            }
-            case "5" -> {
-                return new Progression();
-            }
-            case "6" -> {
-                return new Prime();
-            }
-            default -> {
-                System.out.println("Invalid choice. Please try again.");
-                return null;
-            }
-        }
+        System.out.print("Your choice: ");
     }
 }

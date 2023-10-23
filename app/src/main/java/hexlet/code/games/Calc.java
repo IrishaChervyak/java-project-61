@@ -1,63 +1,46 @@
 package hexlet.code.games;
 
-import hexlet.code.GameGenerator;
-
 import java.util.Random;
 
-public final class Calc implements GameGenerator {
+public final class Calc {
+    private static final Random RANDOM = new Random();
+    private static final int MAX_RANDOM = 20;
+    private static final String[] OPERATIONS = {"+", "-", "*"};
+    private static int firstTerm = RANDOM.nextInt(MAX_RANDOM);
+    private static int secondTerm = RANDOM.nextInt(MAX_RANDOM);
     private static final String GAME_DESCRIPTION = "What is the result of the expression?";
-    private final Random random = new Random();
-    private static final int MAX_FIRST_RANDOM_TERM = 20;
-    private int firstRandomTerm = random.nextInt(MAX_FIRST_RANDOM_TERM);
-    private static final int MAX_SECOND_RANDOM_TERM = 10;
-    private int secondRandomTerm = random.nextInt(MAX_SECOND_RANDOM_TERM);
-    private final String[] operations = {"+", "-", "*"};
-    private static final int MAX_RANDOM_OPERATION = 3;
-    private int randomOperation = random.nextInt(MAX_RANDOM_OPERATION);
+    private static final String[] QUESTIONS = new String[3];
+    private static final String[] ANSWERS = new String[3];
 
-    @Override
-    public String getGameDescription() {
-        return GAME_DESCRIPTION;
+    public static void runGame() {
+        System.out.println(GAME_DESCRIPTION);
+        generateQuestionsAndAnswersForGame();
     }
 
-    @Override
-    public String getQuestion() {
-        int firstTerm = firstRandomTerm;
-        int secondTerm = secondRandomTerm;
-        int operation = randomOperation;
-        return String.format("%d %s %d", firstTerm, operations[operation], secondTerm);
+    public static String[] getQuestion() {
+        return QUESTIONS;
     }
 
-    @Override
-    public int checkAnswer(String answer) {
-        int firstTerm = firstRandomTerm;
-        int secondTerm = secondRandomTerm;
-        int operation = randomOperation;
+    public static String[] getAnswers() {
+        return ANSWERS;
+    }
 
-        int result = switch (operation) {
-            case 0 -> firstTerm + secondTerm;
-            case 1 -> firstTerm - secondTerm;
-            case 2 -> firstTerm * secondTerm;
-            default -> 0;
-        };
+    private static void generateQuestionsAndAnswersForGame() {
+        int i = 0;
 
-        int answerNumber = 0;
-        try {
-            answerNumber = Integer.parseInt(answer);
-        } catch (NumberFormatException e) {
-            System.out.println("Error converting a string to a number: " + e.getMessage());
-        }
+        for (String operation : OPERATIONS) {
+            QUESTIONS[i] = String.format("%d %s %d", firstTerm, operation, secondTerm);
 
-        boolean isCorrect = result == answerNumber;
-        if (isCorrect) {
-            firstRandomTerm = random.nextInt(MAX_FIRST_RANDOM_TERM);
-            secondRandomTerm = random.nextInt(MAX_SECOND_RANDOM_TERM);
-            randomOperation = random.nextInt(MAX_RANDOM_OPERATION);
-            return 1;
-        } else {
-            String errorMessage = String.format(GameGenerator.ERROR_MESSAGE, answer, result);
-            System.out.println(errorMessage);
-            return 0;
+            ANSWERS[i] = switch (operation) {
+                case "+" -> Integer.toString(firstTerm + secondTerm);
+                case "-" -> Integer.toString(firstTerm - secondTerm);
+                case "*" -> Integer.toString(firstTerm * secondTerm);
+                default -> throw new IllegalStateException("Unexpected value: " + operation);
+            };
+
+            firstTerm = RANDOM.nextInt(MAX_RANDOM);
+            secondTerm = RANDOM.nextInt(MAX_RANDOM);
+            i++;
         }
     }
 }
