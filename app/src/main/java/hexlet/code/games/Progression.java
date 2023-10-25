@@ -15,8 +15,8 @@ public final class Progression {
             PROGRESSION_LENGTH - 2);
     private static int hiddenElementValue = 0;
 
-    private static final String[] QUESTIONS = new String[3];
-    private static final String[] ANSWERS = new String[3];
+    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
+    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
 
     public static void runGame() {
         System.out.println(Constants.getProgressionGameDescription());
@@ -32,7 +32,7 @@ public final class Progression {
     }
 
     private static void generateQuestionsAndAnswersForGame() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Constants.getNumberRounds(); i++) {
             QUESTIONS[i] = getQuestion();
             ANSWERS[i] = Integer.toString(hiddenElementValue);
             hiddenElementIndex = Constants.getRandomVariable().nextInt(

@@ -22,7 +22,7 @@ public final class Even {
     }
 
     private static void generateQuestionsAndAnswersForGame() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Constants.getNumberRounds(); i++) {
             QUESTIONS[i] = String.format("%d", number);
 
             boolean isEven = number % 2 == 0;

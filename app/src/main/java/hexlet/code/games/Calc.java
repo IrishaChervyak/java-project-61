@@ -7,8 +7,8 @@ public final class Calc {
     private static final String[] OPERATIONS = {"+", "-", "*"};
     private static int firstTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
     private static int secondTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
-    private static final String[] QUESTIONS = new String[3];
-    private static final String[] ANSWERS = new String[3];
+    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
+    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
 
     public static void runGame() {
         System.out.println(Constants.getCalcGameDescription());
