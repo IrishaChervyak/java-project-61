@@ -1,17 +1,15 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Constants;
 
 public final class Prime {
-    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM = 100;
-    private static int number = RANDOM.nextInt(MAX_RANDOM);
-    private static final String GAME_DESCRIPTION = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
-    private static final String[] QUESTIONS = new String[3];
-    private static final String[] ANSWERS = new String[3];
+    private static int number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
+    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
 
     public static void runGame() {
-        System.out.println(GAME_DESCRIPTION);
+        System.out.println(Constants.getPrimeGameDescription());
         generateQuestionsAndAnswersForGame();
     }
 
@@ -24,14 +22,14 @@ public final class Prime {
     }
 
     private static void generateQuestionsAndAnswersForGame() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Constants.getNumberRounds(); i++) {
             QUESTIONS[i] = String.format("%d", number);
             if (isPrimeNumber()) {
                 ANSWERS[i] = "yes";
             } else {
                 ANSWERS[i] = "no";
             }
-            number = RANDOM.nextInt(MAX_RANDOM);
+            number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
         }
     }
 

@@ -1,18 +1,16 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Constants;
 
 public final class GreatestCommonDivisor {
-    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM = 101;
-    private static int firstNumber = RANDOM.nextInt(MAX_RANDOM);
-    private static int secondNumber = RANDOM.nextInt(MAX_RANDOM);
-    private static final String GAME_DESCRIPTION = "Find the greatest common divisor of given numbers.";
-    private static final String[] QUESTIONS = new String[3];
-    private static final String[] ANSWERS = new String[3];
+    private static int firstNumber = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+    private static int secondNumber = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
+    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
 
     public static void runGame() {
-        System.out.println(GAME_DESCRIPTION);
+        System.out.println(Constants.getGCDGameDescription());
         generateQuestionsAndAnswersForGame();
     }
 
@@ -25,11 +23,11 @@ public final class GreatestCommonDivisor {
     }
 
     private static void generateQuestionsAndAnswersForGame() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < Constants.getNumberRounds(); i++) {
             QUESTIONS[i] = String.format("%d %d", firstNumber, secondNumber);
             ANSWERS[i] = Integer.toString(gcd(firstNumber, secondNumber));
-            firstNumber = RANDOM.nextInt(MAX_RANDOM);
-            secondNumber = RANDOM.nextInt(MAX_RANDOM);
+            firstNumber = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+            secondNumber = Constants.getRandomVariable().nextInt(MAX_RANDOM);
         }
     }
 

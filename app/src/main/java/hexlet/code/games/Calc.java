@@ -1,19 +1,17 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Constants;
 
 public final class Calc {
-    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM = 20;
     private static final String[] OPERATIONS = {"+", "-", "*"};
-    private static int firstTerm = RANDOM.nextInt(MAX_RANDOM);
-    private static int secondTerm = RANDOM.nextInt(MAX_RANDOM);
-    private static final String GAME_DESCRIPTION = "What is the result of the expression?";
+    private static int firstTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+    private static int secondTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
     private static final String[] QUESTIONS = new String[3];
     private static final String[] ANSWERS = new String[3];
 
     public static void runGame() {
-        System.out.println(GAME_DESCRIPTION);
+        System.out.println(Constants.getCalcGameDescription());
         generateQuestionsAndAnswersForGame();
     }
 
@@ -38,8 +36,8 @@ public final class Calc {
                 default -> throw new IllegalStateException("Unexpected value: " + operation);
             };
 
-            firstTerm = RANDOM.nextInt(MAX_RANDOM);
-            secondTerm = RANDOM.nextInt(MAX_RANDOM);
+            firstTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+            secondTerm = Constants.getRandomVariable().nextInt(MAX_RANDOM);
             i++;
         }
     }

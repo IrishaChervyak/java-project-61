@@ -1,18 +1,15 @@
 package hexlet.code.games;
 
-import java.util.Random;
+import hexlet.code.Constants;
 
 public final class Even {
-
-    private static final Random RANDOM = new Random();
     private static final int MAX_RANDOM = 100;
-    private static int number = RANDOM.nextInt(MAX_RANDOM);
-    private static final String GAME_DESCRIPTION = "Answer 'yes' if the number is even, otherwise answer 'no'.";
-    private static final String[] QUESTIONS = new String[3];
-    private static final String[] ANSWERS = new String[3];
+    private static int number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
+    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
 
     public static void runGame() {
-        System.out.println(GAME_DESCRIPTION);
+        System.out.println(Constants.getEvenGameDescription());
         generateQuestionsAndAnswersForGame();
     }
 
@@ -35,7 +32,7 @@ public final class Even {
                 ANSWERS[i] = "no";
             }
 
-            number = RANDOM.nextInt(MAX_RANDOM);
+            number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
         }
     }
 }

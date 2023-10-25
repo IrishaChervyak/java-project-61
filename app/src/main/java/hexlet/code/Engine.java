@@ -14,9 +14,6 @@ public final class Engine {
         // Приватный конструктор
     }
 
-    private static final int TARGET_SCORE = 3;
-    private static final String ERROR_MESSAGE = "'%s' is wrong answer ;(. Correct answer was '%s'.\n";
-
     public static void gameOutput(Scanner scanner, String selectedGame) {
         String[] questions = new String[]{};
         String[] answers = new String[]{};
@@ -46,7 +43,7 @@ public final class Engine {
         }
 
         int scoredPoints = 0;
-        for (int i = 0; i < TARGET_SCORE; i++) {
+        for (int i = 0; i < Constants.getNumberRounds(); i++) {
             System.out.printf("Question: %s\n", questions[i]);
             System.out.print("Your answer: ");
             String userAnswer = scanner.nextLine();
@@ -56,13 +53,13 @@ public final class Engine {
                 System.out.println("Correct!");
                 scoredPoints += gameResult;
             } else {
-                System.out.printf(ERROR_MESSAGE, userAnswer, answers[i]);
+                System.out.printf(Constants.getErrorMessages(), userAnswer, answers[i]);
                 System.out.printf("Let's try again, %s!\n", Cli.getUserName());
                 break;
             }
         }
 
-        if (scoredPoints == TARGET_SCORE) {
+        if (scoredPoints == Constants.getNumberRounds()) {
             System.out.printf("Congratulations, %s!\n", Cli.getUserName());
         }
     }
