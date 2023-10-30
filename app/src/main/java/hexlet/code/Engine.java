@@ -13,17 +13,16 @@ public final class Engine {
         int countRounds = Constants.getNumberRounds();
 
         for (int i = 0; i < countRounds; i++) {
-            System.out.printf("Question: %s\n", questions[i]);
-            System.out.print("Your answer: ");
-            String userAnswer = scanner.nextLine();
+            String question = questions[i];
+            String userAnswer = getUserAnswer(scanner, question);
 
-            int gameResult = Objects.equals(userAnswer, answers[i]) ? 1 : 0;
-            if (gameResult == 1 && !userAnswer.isEmpty()) {
+            int gameResult = checkAnswer(userAnswer, answers[i]);
+
+            if (gameResult == 1) {
                 System.out.println("Correct!");
-                scoredPoints += gameResult;
+                scoredPoints++;
             } else {
-                System.out.printf(Constants.getErrorMessages(), userAnswer, answers[i]);
-                System.out.printf("Let's try again, %s!\n", Cli.getUserName());
+                handleIncorrectAnswer(userAnswer, answers[i]);
                 break;
             }
         }
@@ -31,5 +30,20 @@ public final class Engine {
         if (scoredPoints == Constants.getNumberRounds()) {
             System.out.printf("Congratulations, %s!\n", Cli.getUserName());
         }
+    }
+
+    private static String getUserAnswer(Scanner scanner, String question) {
+        System.out.printf("Question: %s\n", question);
+        System.out.print("Your answer: ");
+        return scanner.nextLine();
+    }
+
+    private static int checkAnswer(String userAnswer, String correctAnswer) {
+        return Objects.equals(userAnswer, correctAnswer) && !userAnswer.isEmpty() ? 1 : 0;
+    }
+
+    private static void handleIncorrectAnswer(String userAnswer, String correctAnswer) {
+        System.out.printf(Constants.getErrorMessages(), userAnswer, correctAnswer);
+        System.out.printf("Let's try again, %s!\n", Cli.getUserName());
     }
 }
