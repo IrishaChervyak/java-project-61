@@ -10,8 +10,9 @@ public final class Engine {
 
     public static void gameOutput(Scanner scanner, String[] questions, String[] answers) {
         int scoredPoints = 0;
+        int countRounds = Constants.getNumberRounds();
 
-        for (int i = 0; i < Constants.getNumberRounds(); i++) {
+        for (int i = 0; i < countRounds; i++) {
             System.out.printf("Question: %s\n", questions[i]);
             System.out.print("Your answer: ");
             String userAnswer = scanner.nextLine();
