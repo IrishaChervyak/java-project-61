@@ -1,56 +1,65 @@
 package hexlet.code.games;
 
 import hexlet.code.Constants;
+import hexlet.code.Engine;
+
+import java.util.Scanner;
 
 public final class Progression {
-    private static final int PROGRESSION_LENGTH = 12;
-    private static final int MAX_ELEMENT_VALUE_RANDOM = 31;
-    private static int firstElementValue = Constants.getRandomVariable().nextInt(MAX_ELEMENT_VALUE_RANDOM);
-    private static final int MIN_RANDOM_STEP = 2;
-    private static final int MAX_RANDOM_STEP = 9;
-    private static int progressionStep = Constants.getRandomVariable().nextInt(MIN_RANDOM_STEP, MAX_RANDOM_STEP);
-    private static final int MIN_RANDOM_HIDDEN_ELEMENT_INDEX = 1;
-    private static int hiddenElementIndex = Constants.getRandomVariable().nextInt(
-            MIN_RANDOM_HIDDEN_ELEMENT_INDEX,
-            PROGRESSION_LENGTH - 2);
-    private static int hiddenElementValue = 0;
+    public static final int[] ANSWERS = new int[Constants.getNumberRounds()];
 
-    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
-    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
-
-    public static void runGame() {
+    public static void runGame(Scanner scanner) {
         System.out.println(Constants.getProgressionGameDescription());
-        generateQuestionsAndAnswersForGame();
+
+        String[] questions = getQuestions();
+        String[] answers = getAnswers();
+
+        Engine.gameOutput(scanner, questions, answers);
     }
 
-    public static String[] getQuestions() {
-        return QUESTIONS;
-    }
+    private static String[] getQuestions() {
+        String[] questions = new String[Constants.getNumberRounds()];
 
-    public static String[] getAnswers() {
-        return ANSWERS;
-    }
+        final int arrayLength = 12;
+        final int maxElementValue = 31;
+        final int minStepValue = 2;
+        final int maxStepValue = 9;
+        final int minHiddenElementIndex = 1;
 
-    private static void generateQuestionsAndAnswersForGame() {
-        for (int i = 0; i < Constants.getNumberRounds(); i++) {
-            QUESTIONS[i] = getQuestion();
-            ANSWERS[i] = Integer.toString(hiddenElementValue);
-            hiddenElementIndex = Constants.getRandomVariable().nextInt(
-                    MIN_RANDOM_HIDDEN_ELEMENT_INDEX,
-                    PROGRESSION_LENGTH - 2);
-            firstElementValue = Constants.getRandomVariable().nextInt(MAX_ELEMENT_VALUE_RANDOM);
-            progressionStep = Constants.getRandomVariable().nextInt(MIN_RANDOM_STEP, MAX_RANDOM_STEP);
+        int firstElementValue = Constants.getRandomVariable().nextInt(maxElementValue);
+        int progressionStep = Constants.getRandomVariable().nextInt(minStepValue, maxStepValue);
+        int hiddenElementIndex = Constants.getRandomVariable().nextInt(minHiddenElementIndex, arrayLength - 2);
+        for (int i = 0; i < questions.length; i++) {
+            questions[i] = getQuestion(firstElementValue, progressionStep, hiddenElementIndex, arrayLength, i);
+
+            firstElementValue = Constants.getRandomVariable().nextInt(maxElementValue);
+            progressionStep = Constants.getRandomVariable().nextInt(minStepValue, maxStepValue);
+            hiddenElementIndex = Constants.getRandomVariable().nextInt(minHiddenElementIndex, arrayLength - 2);
         }
+
+        return questions;
     }
 
-    public static String getQuestion() {
-        String[] progression = generateProgression();
-        hiddenElementValue = hideElementInProgression(progression);
+    private static String[] getAnswers() {
+        String[] answers = new String[Constants.getNumberRounds()];
+
+        for (int i = 0; i < answers.length; i++) {
+            answers[i] = Integer.toString(ANSWERS[i]);
+        }
+
+        return answers;
+    }
+
+    public static String getQuestion(int firstElementValue, int progressionStep, int hiddenElementIndex, int i,
+                                     final int progressionLength) {
+        String[] progression = generateProgression(firstElementValue, progressionStep, progressionLength);
+        ANSWERS[i] = hideElementInProgression(progression, hiddenElementIndex);
         return String.join(" ", progression);
     }
 
-    private static String[] generateProgression() {
-        String[] progression = new String[PROGRESSION_LENGTH];
+    private static String[] generateProgression(int firstElementValue, int progressionStep,
+                                                final int progressionLength) {
+        String[] progression = new String[progressionLength];
         progression[0] = Integer.toString(firstElementValue);
 
         int nextElement = firstElementValue + progressionStep;
@@ -62,7 +71,7 @@ public final class Progression {
         return progression;
     }
 
-    private static int hideElementInProgression(String[] progression) {
+    private static int hideElementInProgression(String[] progression, int hiddenElementIndex) {
         int hiddenElement = Integer.parseInt(progression[hiddenElementIndex]);
         progression[hiddenElementIndex] = "..";
         return hiddenElement;

@@ -1,39 +1,53 @@
 package hexlet.code.games;
 
 import hexlet.code.Constants;
+import hexlet.code.Engine;
+
+import java.util.Scanner;
 
 public final class Prime {
-    private static final int MAX_RANDOM = 100;
-    private static int number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
-    private static final String[] QUESTIONS = new String[Constants.getNumberRounds()];
-    private static final String[] ANSWERS = new String[Constants.getNumberRounds()];
+    public static final int[] QUESTIONS = new int[Constants.getNumberRounds()];
 
-    public static void runGame() {
+    public static void runGame(Scanner scanner) {
         System.out.println(Constants.getPrimeGameDescription());
-        generateQuestionsAndAnswersForGame();
+
+        String[] questions = getQuestions();
+        String[] answers = getAnswers();
+
+        Engine.gameOutput(scanner, questions, answers);
     }
 
-    public static String[] getQuestions() {
-        return QUESTIONS;
-    }
+    private static String[] getQuestions() {
+        String[] result = new String[Constants.getNumberRounds()];
 
-    public static String[] getAnswers() {
-        return ANSWERS;
-    }
+        final int maxValue = 100;
 
-    private static void generateQuestionsAndAnswersForGame() {
+        int number = Constants.getRandomVariable().nextInt(maxValue);
         for (int i = 0; i < Constants.getNumberRounds(); i++) {
-            QUESTIONS[i] = String.format("%d", number);
-            if (isPrimeNumber()) {
-                ANSWERS[i] = "yes";
-            } else {
-                ANSWERS[i] = "no";
-            }
-            number = Constants.getRandomVariable().nextInt(MAX_RANDOM);
+            QUESTIONS[i] = number;
+            result[i] = String.format("%d", number);
+
+            number = Constants.getRandomVariable().nextInt(maxValue);
         }
+
+        return result;
     }
 
-    private static boolean isPrimeNumber() {
+    private static String[] getAnswers() {
+        String[] answers = new String[Constants.getNumberRounds()];
+
+        for (int i = 0; i < QUESTIONS.length; i++) {
+            if (isPrimeNumber(QUESTIONS[i])) {
+                answers[i] = "yes";
+            } else {
+                answers[i] = "no";
+            }
+        }
+
+        return answers;
+    }
+
+    private static boolean isPrimeNumber(int number) {
         if (number <= 1) {
             return false;
         }

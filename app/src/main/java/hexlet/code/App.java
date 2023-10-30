@@ -25,28 +25,23 @@ public class App {
             case "1" -> Cli.welcomeUser(scanner);
             case "2" -> {
                 Cli.welcomeUser(scanner);
-                Even.runGame();
-                Engine.gameOutput(scanner, selectedGameNumber);
+                Even.runGame(scanner);
             }
             case "3" -> {
                 Cli.welcomeUser(scanner);
-                Calc.runGame();
-                Engine.gameOutput(scanner, selectedGameNumber);
+                Calc.runGame(scanner);
             }
             case "4" -> {
                 Cli.welcomeUser(scanner);
-                GreatestCommonDivisor.runGame();
-                Engine.gameOutput(scanner, selectedGameNumber);
+                GreatestCommonDivisor.runGame(scanner);
             }
             case "5" -> {
                 Cli.welcomeUser(scanner);
-                Progression.runGame();
-                Engine.gameOutput(scanner, selectedGameNumber);
+                Progression.runGame(scanner);
             }
             case "6" -> {
                 Cli.welcomeUser(scanner);
-                Prime.runGame();
-                Engine.gameOutput(scanner, selectedGameNumber);
+                Prime.runGame(scanner);
             }
             default -> System.out.println("Invalid choice. Please try again.");
         }
